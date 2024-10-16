@@ -1,0 +1,22 @@
+{
+  "name": "pract",
+  "version": "1.0.0",
+  "main": "app/server.js",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon app/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "multer": "^1.4.5-lts.1",
+    "sqlite3": "^5.1.7"
+  }
+}

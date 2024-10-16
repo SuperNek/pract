@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список партнёров</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Список партнёров</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Тип</th>
+                <th>Рейтинг</th>
+                <th>Адрес</th>
+                <th>ИНН</th>
+                <th>Директор</th>
+                <th>Телефон</th>
+                <th>Email</th>
+                <th>Действия</th> <!-- Добавляем колонку для действий -->
+            </tr>
+        </thead>
+        <tbody>
+            <% partners.forEach(partner => { %>
+                <tr>
+                    <td><%= partner.company_name %></td>
+                    <td><%= partner.partner_type %></td>
+                    <td><%= partner.rating %></td>
+                    <td><%= partner.legal_address %></td>
+                    <td><%= partner.tax_number %></td>
+                    <td><%= partner.director_name %></td>
+                    <td><%= partner.phone %></td>
+                    <td><%= partner.email %></td>
+                    <td>
+                        <a href="/partners/<%= partner.id %>/edit">
+                            <button type="button">Редактировать</button>
+                        </a>
+                        <form action="/partners/<%= partner.id %>/delete" method="POST" style="display:inline; margin: 0; padding: 0;">
+                            <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить партнёра?')" style="background-color: red; color: white; border: none; cursor: pointer;">
+                                Удалить
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <a href="/partners/new">
+        <button type="button">Добавить нового партнёра</button>
+    </a>
+</body>
+</html>

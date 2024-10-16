@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= partner ? 'Редактировать' : 'Добавить' %> партнёра</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1><%= partner ? 'Редактировать' : 'Добавить' %> партнёра</h1>
+
+    <form action="/partners/save" method="POST" enctype="multipart/form-data">
+        <!-- Если партнёр существует, добавляем скрытое поле с его id -->
+        <% if (partner) { %>
+            <input type="hidden" name="id" value="<%= partner.id %>">
+        <% } %>
+        
+        <label>Наименование:</label>
+        <input type="text" name="company_name" value="<%= partner ? partner.company_name : '' %>" required>
+
+        <label>Тип партнёра:</label>
+        <select name="company_type_id" required>
+            <% companyTypes.forEach(type => { %>
+                <option value="<%= type.id %>" <%= partner && partner.company_type_id === type.id ? 'selected' : '' %>><%= type.type_name %></option>
+            <% }); %>
+        </select>
+
+        <label>Рейтинг:</label>
+        <input type="number" name="rating" min="0" value="<%= partner ? partner.rating : '' %>" required>
+
+        <label>Юридический адрес:</label>
+        <input type="text" name="legal_address" value="<%= partner ? partner.legal_address : '' %>" required>
+
+        <label>ИНН:</label>
+        <input type="text" name="tax_number" value="<%= partner ? partner.tax_number : '' %>" required>
+
+
+        <label>ФИО директора:</label>
+        <input type="text" name="director_name" value="<%= partner ? partner.director_name : '' %>" required>
+
+        <label>Телефон:</label>
+        <input type="tel" name="phone" value="<%= partner ? partner.phone : '' %>" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" value="<%= partner ? partner.email : '' %>" required>
+
+        <button type="submit"><%= partner ? 'Сохранить' : 'Добавить' %></button>
+    </form>
+
+    <a href="/partners">Назад к списку партнёров</a>
+</body>
+</html>
