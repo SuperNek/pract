@@ -12,7 +12,7 @@ const getCompanyTypes = (callback) => {
 
 export const getPartners = (req, res) => {
     const sql = `
-        SELECT p.id, p.company_name, p.tax_number, p.rating, p.legal_address, p.director_name, p.phone, p.email, p.logo, ct.type_name AS partner_type
+        SELECT p.id, p.company_name, p.tax_number, p.rating, p.legal_address, p.director_name, p.phone, p.email, ct.type_name AS partner_type
         FROM Partners p
         LEFT JOIN CompanyTypes ct ON p.company_type_id = ct.id
     `;
@@ -22,15 +22,7 @@ export const getPartners = (req, res) => {
             return res.status(500).render('error', { message: 'Ошибка при получении списка партнёров', error: err });
         }
 
-        // Преобразуем каждый логотип из BLOB в base64
-        const partnersWithLogo = partners.map(partner => {
-            if (partner.logo) {
-                partner.logo = `data:image/png;base64,${partner.logo.toString('base64')}`;
-            }
-            return partner;
-        });
-
-        res.render('partners', { partners: partnersWithLogo });
+        res.render('partners', { partners });
     });
 };
 

@@ -10,7 +10,6 @@
     <h1><%= partner ? 'Редактировать' : 'Добавить' %> партнёра</h1>
 
     <form action="/partners/save" method="POST" enctype="multipart/form-data">
-        <!-- Если партнёр существует, добавляем скрытое поле с его id -->
         <% if (partner) { %>
             <input type="hidden" name="id" value="<%= partner.id %>">
         <% } %>
