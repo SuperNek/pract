@@ -49,10 +49,11 @@ export const savePartner = (req, res) => {
     let logo = null;
 
     if (req.file) {
-        logo = req.file.buffer; 
+        logo = req.file.buffer;
     }
 
-    if (!company_name || !company_type_id || rating < 0 || !legal_address || !tax_number) {
+    // Проверка на правильность данных
+    if (!company_name || !company_type_id || rating < 0 || !legal_address || !tax_number) { // Проверяем tax_number
         return getCompanyTypes((err, companyTypes) => {
             if (err) {
                 return res.status(500).render('error', { message: 'Ошибка при получении типов компаний', error: err });

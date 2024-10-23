@@ -5,6 +5,7 @@ import { updateAllDiscounts } from "../controllers/discountController.js";
 import { getNewPartnerForm } from "../controllers/partnersController.js";
 import { savePartner } from "../controllers/partnersController.js";
 import { deletePartner } from "../controllers/partnersController.js";
+import multer from 'multer';
 
 const router = express.Router();
 
